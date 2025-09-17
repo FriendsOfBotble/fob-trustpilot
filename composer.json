@@ -1,0 +1,24 @@
+{
+    "name": "friendsofbotble/fob-trustpilot",
+    "description": "Integrate Trustpilot widgets and reviews into your website",
+    "type": "botble-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Friends Of Botble",
+            "email": "contact@friendsofbotble.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "FriendsOfBotble\\Trustpilot\\": "src/"
+        },
+        "files": [
+            "helpers/helpers.php"
+        ]
+    },
+    "minimum-stability": "stable"
+}
