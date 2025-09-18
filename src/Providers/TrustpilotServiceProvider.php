@@ -47,7 +47,7 @@ class TrustpilotServiceProvider extends ServiceProvider
             'parent_id' => 'cms-core-settings',
             'name' => 'plugins/fob-trustpilot::trustpilot.menu_title',
             'icon' => null,
-            'url' => route('fob-trustpilot.settings'),
+            'url' => fn () => route('fob-trustpilot.settings'),
             'permissions' => ['fob-trustpilot.settings'],
         ]);
     }

@@ -121,7 +121,7 @@ class TrustpilotService
             $containerStyles[] = sprintf('padding-bottom: %s', $paddingY);
         }
 
-        if (!empty($containerStyles)) {
+        if (! empty($containerStyles)) {
             $containerStyle = implode('; ', $containerStyles);
             $widgetHtml = sprintf('<div class="trustpilot-widget-container" style="%s">%s</div>', $containerStyle, $widgetHtml);
         }
