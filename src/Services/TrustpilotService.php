@@ -74,7 +74,6 @@ class TrustpilotService
             parse_url(url('/'), PHP_URL_HOST)
         );
 
-        // Wrap widget in container with styling
         $containerStyles = [];
 
         $maxWidth = setting('fob_trustpilot_widget_max_width');

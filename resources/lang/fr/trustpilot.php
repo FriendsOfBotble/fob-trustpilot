@@ -26,6 +26,33 @@ return [
         'widget_template_helper' => 'Sélectionnez un modèle spécifique pour votre widget, ou laissez vide pour utiliser le modèle par défaut.',
         'use_default_template' => '-- Utiliser le modèle par défaut --',
 
+        'token' => 'Jeton du widget',
+        'token_helper' => 'Optionnel : Jeton pour le widget de collecte d\'avis. Obtenez-le à partir de la configuration du widget dans votre compte Trustpilot Business.',
+
+        'stars' => 'Étoiles à collecter',
+        'stars_helper' => 'Liste séparée par des virgules des notes étoilées (ex : 1,2,3,4,5). Par défaut : toutes les notes.',
+
+        'widget_height' => 'Hauteur du widget',
+        'widget_height_helper' => 'Hauteur personnalisée pour le widget (ex : 450px, 100%, auto). Laissez vide pour utiliser la hauteur par défaut du modèle sélectionné.',
+
+        'widget_max_width' => 'Largeur maximale du widget',
+        'widget_max_width_helper' => 'Largeur maximale pour le conteneur du widget (ex : 1200px, 90%, none). Définir sur "none" pour aucune limite. Laissez vide pour la largeur complète.',
+
+        'widget_alignment' => 'Alignement du widget',
+        'widget_alignment_helper' => 'Comment aligner le widget dans son conteneur.',
+
+        'widget_margin_x' => 'Marge horizontale (Gauche/Droite)',
+        'widget_margin_x_helper' => 'Espacement horizontal sur les côtés gauche et droit (ex : 20px, 5%, auto, 0).',
+
+        'widget_margin_y' => 'Marge verticale (Haut/Bas)',
+        'widget_margin_y_helper' => 'Espacement vertical en haut et en bas (ex : 30px, 2rem, 0).',
+
+        'widget_padding_x' => 'Rembourrage horizontal (Gauche/Droite)',
+        'widget_padding_x_helper' => 'Espacement horizontal intérieur sur les côtés gauche et droit (ex : 15px, 1rem, 0).',
+
+        'widget_padding_y' => 'Rembourrage vertical (Haut/Bas)',
+        'widget_padding_y_helper' => 'Espacement vertical intérieur en haut et en bas (ex : 10px, 1rem, 0).',
+
         'stars_color' => 'Couleur des étoiles',
         'stars_color_helper' => 'Optionnel : Couleur personnalisée pour les étoiles (ex : #FFD700)',
 
@@ -63,6 +90,12 @@ return [
         'dark' => 'Sombre',
     ],
 
+    'alignments' => [
+        'start' => 'Gauche',
+        'center' => 'Centre',
+        'end' => 'Droite',
+    ],
+
     'positions' => [
         'after_footer' => 'Après le pied de page (Automatique)',
         'floating' => 'Flottant en bas à droite (Automatique)',
@@ -88,5 +121,12 @@ return [
         'color_format' => 'Veuillez entrer une couleur hexadécimale valide (ex : #FF5733 ou #F53).',
         'font_family_format' => 'La police contient des caractères non valides. Utilisez uniquement des lettres, chiffres, espaces, virgules, tirets et guillemets.',
         'json_format' => 'Les styles personnalisés doivent être au format JSON valide.',
+        'token_format' => 'Le jeton doit être au format UUID valide (ex : f6ae086f-2599-41bd-976a-196733ead805).',
+        'stars_format' => 'Les étoiles doivent être des nombres séparés par des virgules entre 1 et 5 (ex : 1,2,3,4,5).',
+        'height_format' => 'La hauteur doit être une valeur CSS valide (ex : 450px, 100%, 2em, auto).',
+        'max_width_format' => 'La largeur maximale doit être une valeur CSS valide (ex : 1200px, 90%, none).',
+        'alignment_format' => 'Veuillez sélectionner une option d\'alignement valide.',
+        'margin_format' => 'La marge doit être une valeur CSS valide (ex : 20px, 5%, 0, auto).',
+        'padding_format' => 'Le rembourrage doit être une valeur CSS valide (ex : 15px, 1rem, 0).',
     ],
 ];
