@@ -21,15 +21,30 @@ class TrustpilotService
         $templateId = setting('fob_trustpilot_widget_template_id') ?: '53aa8912dec7e10d38f59f36';
         $position = setting('fob_trustpilot_display_position', 'after_footer');
 
+        $customHeight = setting('fob_trustpilot_widget_height');
+        $height = $customHeight ?: $this->getWidgetHeight($templateId);
+
         $attributes = [
             'class' => 'trustpilot-widget',
             'data-locale' => $locale,
             'data-template-id' => $templateId,
             'data-businessunit-id' => $businessUnitId,
-            'data-style-height' => $this->getWidgetHeight($templateId),
+            'data-style-height' => $height,
             'data-style-width' => '100%',
             'data-theme' => $theme,
+            'data-allow-robots' => 'true',
+            'data-scroll-to-list' => 'false',
         ];
+
+        $token = setting('fob_trustpilot_token');
+        if ($token) {
+            $attributes['data-token'] = $token;
+        }
+
+        $stars = setting('fob_trustpilot_stars');
+        if ($stars) {
+            $attributes['data-stars'] = $stars;
+        }
 
         $customStyles = setting('fob_trustpilot_custom_styles');
         if ($customStyles) {
@@ -43,7 +58,7 @@ class TrustpilotService
 
         $textColor = setting('fob_trustpilot_text_color');
         if ($textColor) {
-            $attributes['data-text-color'] = $textColor;
+            $attributes['data-text-color'] = $this->mapTextColor($textColor);
         }
 
         $fontFamily = setting('fob_trustpilot_font_family');
@@ -58,6 +73,58 @@ class TrustpilotService
             $attributesString,
             parse_url(url('/'), PHP_URL_HOST)
         );
+
+        // Wrap widget in container with styling
+        $containerStyles = [];
+
+        $maxWidth = setting('fob_trustpilot_widget_max_width');
+        if ($maxWidth && $maxWidth !== 'none') {
+            $containerStyles[] = sprintf('max-width: %s', $maxWidth);
+        }
+
+        $alignment = setting('fob_trustpilot_widget_alignment', 'center');
+        $marginX = setting('fob_trustpilot_widget_margin_x');
+        $marginY = setting('fob_trustpilot_widget_margin_y');
+
+        // Handle horizontal margin and alignment
+        if ($marginX) {
+            // If explicit margin X is set, use it
+            $containerStyles[] = sprintf('margin-left: %s', $marginX);
+            $containerStyles[] = sprintf('margin-right: %s', $marginX);
+        } else {
+            // Otherwise use alignment
+            if ($alignment === 'center') {
+                $containerStyles[] = 'margin-left: auto';
+                $containerStyles[] = 'margin-right: auto';
+            } elseif ($alignment === 'end') {
+                $containerStyles[] = 'margin-left: auto';
+            }
+        }
+
+        // Handle vertical margin
+        if ($marginY) {
+            $containerStyles[] = sprintf('margin-top: %s', $marginY);
+            $containerStyles[] = sprintf('margin-bottom: %s', $marginY);
+        }
+
+        // Handle padding
+        $paddingX = setting('fob_trustpilot_widget_padding_x');
+        $paddingY = setting('fob_trustpilot_widget_padding_y');
+
+        if ($paddingX) {
+            $containerStyles[] = sprintf('padding-left: %s', $paddingX);
+            $containerStyles[] = sprintf('padding-right: %s', $paddingX);
+        }
+
+        if ($paddingY) {
+            $containerStyles[] = sprintf('padding-top: %s', $paddingY);
+            $containerStyles[] = sprintf('padding-bottom: %s', $paddingY);
+        }
+
+        if (!empty($containerStyles)) {
+            $containerStyle = implode('; ', $containerStyles);
+            $widgetHtml = sprintf('<div class="trustpilot-widget-container" style="%s">%s</div>', $containerStyle, $widgetHtml);
+        }
 
         if ($position === 'floating') {
             $html = '<div class="trustpilot-floating-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">' . $widgetHtml . '</div>';
@@ -83,14 +150,14 @@ class TrustpilotService
     protected function getWidgetHeight(string $templateId): string
     {
         $heights = [
-            '53aa8912dec7e10d38f59f36' => '20px',
-            '56278e9abfbbba0bdcd568bc' => '450px',
-            '53aa8807dec7e10d38f59f32' => '100px',
-            '5419b637cbbe100b94d2e178' => '20px',
-            '539adbd6dec7e10e686debe3' => '80px',
-            '54ad5defc6454f065c28af8b' => '240px',
-            '539ad60defb9600b94d7df2c' => '100px',
-            '5613c9cde69ddc000b5a2dd3' => '20px',
+            '53aa8912dec7e10d38f59f36' => '20px',   // Micro Review Count
+            '56278e9abfbbba0bdcd568bc' => '450px',  // Review Collector
+            '53aa8807dec7e10d38f59f32' => '100px',  // Mini
+            '5419b637cbbe100b94d2e178' => '20px',   // Micro Star Rating
+            '539adbd6dec7e10e686debe3' => '80px',   // Mini Carousel
+            '54ad5defc6454f065c28af8b' => '240px',  // Carousel Full
+            '539ad60defb9600b94d7df2c' => '100px',  // Mini Dark
+            '5613c9cde69ddc000b5a2dd3' => '20px',   // Micro Review Count Dark
         ];
 
         return $heights[$templateId] ?? '100px';
@@ -202,5 +269,20 @@ class TrustpilotService
         }
 
         return implode(' ', $html);
+    }
+
+    protected function mapTextColor(string $color): string
+    {
+        $darkColors = ['#000000', '#212529', '#495057', '#6c757d'];
+
+        if (in_array(strtolower($color), $darkColors)) {
+            return 'dark';
+        }
+
+        if (strtolower($color) === '#ffffff' || strtolower($color) === '#fff') {
+            return 'light';
+        }
+
+        return 'dark';
     }
 }

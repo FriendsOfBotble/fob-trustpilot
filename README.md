@@ -2,6 +2,8 @@
 
 A comprehensive Trustpilot integration plugin for Botble CMS that enables you to display customer reviews and ratings on your website through various customizable widgets, helping build trust and credibility with potential customers.
 
+![Screenshot](./art/4.png)
+
 ## Requirements
 
 - Botble core 7.5.0 or higher.
@@ -41,7 +43,11 @@ Go to the **Admin Panel** and click on the **Plugins** tab. Click on the "Add ne
 3. Enter your Business Unit ID (found in Trustpilot Business account under Settings → API)
 4. Configure display preferences and save
 
+![Screenshot](./art/1.png)
+
 ### Using Shortcodes
+
+![Screenshot](./art/3.png)
 
 Display a Trustpilot widget anywhere using:
 
@@ -56,6 +62,8 @@ Override the default template:
 ```
 
 ### Using Widgets
+
+![Screenshot](./art/2.png)
 
 1. Go to **Appearance** > **Widgets**
 2. Drag the "Trustpilot Reviews" widget to your desired area

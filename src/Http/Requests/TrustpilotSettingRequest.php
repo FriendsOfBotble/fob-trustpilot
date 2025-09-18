@@ -77,6 +77,68 @@ class TrustpilotSettingRequest extends SettingRequest
                 'string',
                 Rule::in(array_keys($trustpilotService->getDisplayPositions())),
             ],
+
+            'fob_trustpilot_token' => [
+                'nullable',
+                'string',
+                'max:255',
+                'regex:/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i',
+            ],
+
+            'fob_trustpilot_stars' => [
+                'nullable',
+                'string',
+                'max:20',
+                'regex:/^[1-5](,[1-5])*$/',
+            ],
+
+            'fob_trustpilot_widget_height' => [
+                'nullable',
+                'string',
+                'max:20',
+                'regex:/^(\d+(\.\d+)?(px|%|em|rem|vh|vw)|auto)$/i',
+            ],
+
+            'fob_trustpilot_widget_max_width' => [
+                'nullable',
+                'string',
+                'max:20',
+                'regex:/^(\d+(\.\d+)?(px|%|em|rem|vw)|none)$/i',
+            ],
+
+            'fob_trustpilot_widget_alignment' => [
+                'nullable',
+                'string',
+                Rule::in(['start', 'center', 'end']),
+            ],
+
+            'fob_trustpilot_widget_margin_x' => [
+                'nullable',
+                'string',
+                'max:20',
+                'regex:/^(\d+(\.\d+)?(px|%|em|rem|vw)|0|auto)$/i',
+            ],
+
+            'fob_trustpilot_widget_margin_y' => [
+                'nullable',
+                'string',
+                'max:20',
+                'regex:/^(\d+(\.\d+)?(px|%|em|rem|vh)|0)$/i',
+            ],
+
+            'fob_trustpilot_widget_padding_x' => [
+                'nullable',
+                'string',
+                'max:20',
+                'regex:/^(\d+(\.\d+)?(px|%|em|rem|vw)|0)$/i',
+            ],
+
+            'fob_trustpilot_widget_padding_y' => [
+                'nullable',
+                'string',
+                'max:20',
+                'regex:/^(\d+(\.\d+)?(px|%|em|rem|vh)|0)$/i',
+            ],
         ];
     }
 
@@ -90,6 +152,15 @@ class TrustpilotSettingRequest extends SettingRequest
             'fob_trustpilot_text_color.regex' => trans('plugins/fob-trustpilot::trustpilot.validation.color_format'),
             'fob_trustpilot_font_family.regex' => trans('plugins/fob-trustpilot::trustpilot.validation.font_family_format'),
             'fob_trustpilot_custom_styles.json' => trans('plugins/fob-trustpilot::trustpilot.validation.json_format'),
+            'fob_trustpilot_token.regex' => trans('plugins/fob-trustpilot::trustpilot.validation.token_format'),
+            'fob_trustpilot_stars.regex' => trans('plugins/fob-trustpilot::trustpilot.validation.stars_format'),
+            'fob_trustpilot_widget_height.regex' => trans('plugins/fob-trustpilot::trustpilot.validation.height_format'),
+            'fob_trustpilot_widget_max_width.regex' => trans('plugins/fob-trustpilot::trustpilot.validation.max_width_format'),
+            'fob_trustpilot_widget_alignment.in' => trans('plugins/fob-trustpilot::trustpilot.validation.alignment_format'),
+            'fob_trustpilot_widget_margin_x.regex' => trans('plugins/fob-trustpilot::trustpilot.validation.margin_format'),
+            'fob_trustpilot_widget_margin_y.regex' => trans('plugins/fob-trustpilot::trustpilot.validation.margin_format'),
+            'fob_trustpilot_widget_padding_x.regex' => trans('plugins/fob-trustpilot::trustpilot.validation.padding_format'),
+            'fob_trustpilot_widget_padding_y.regex' => trans('plugins/fob-trustpilot::trustpilot.validation.padding_format'),
         ];
     }
 
@@ -103,6 +174,14 @@ class TrustpilotSettingRequest extends SettingRequest
             'fob_trustpilot_stars_color',
             'fob_trustpilot_text_color',
             'fob_trustpilot_font_family',
+            'fob_trustpilot_token',
+            'fob_trustpilot_stars',
+            'fob_trustpilot_widget_height',
+            'fob_trustpilot_widget_max_width',
+            'fob_trustpilot_widget_margin_x',
+            'fob_trustpilot_widget_margin_y',
+            'fob_trustpilot_widget_padding_x',
+            'fob_trustpilot_widget_padding_y',
         ];
 
         foreach ($fieldsToTrim as $field) {

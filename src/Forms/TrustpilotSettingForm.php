@@ -112,6 +112,100 @@ class TrustpilotSettingForm extends SettingForm
                     ->toArray()
             )
             ->add(
+                'fob_trustpilot_token',
+                TextField::class,
+                TextFieldOption::make()
+                    ->label(trans('plugins/fob-trustpilot::trustpilot.settings.token'))
+                    ->helperText(trans('plugins/fob-trustpilot::trustpilot.settings.token_helper'))
+                    ->value(old('fob_trustpilot_token', setting('fob_trustpilot_token')))
+                    ->placeholder('e.g., f6ae086f-2599-41bd-976a-196733ead805')
+                    ->toArray()
+            )
+            ->add(
+                'fob_trustpilot_stars',
+                TextField::class,
+                TextFieldOption::make()
+                    ->label(trans('plugins/fob-trustpilot::trustpilot.settings.stars'))
+                    ->helperText(trans('plugins/fob-trustpilot::trustpilot.settings.stars_helper'))
+                    ->value(old('fob_trustpilot_stars', setting('fob_trustpilot_stars', '1,2,3,4,5')))
+                    ->placeholder('1,2,3,4,5')
+                    ->toArray()
+            )
+            ->add(
+                'fob_trustpilot_widget_height',
+                TextField::class,
+                TextFieldOption::make()
+                    ->label(trans('plugins/fob-trustpilot::trustpilot.settings.widget_height'))
+                    ->helperText(trans('plugins/fob-trustpilot::trustpilot.settings.widget_height_helper'))
+                    ->value(old('fob_trustpilot_widget_height', setting('fob_trustpilot_widget_height')))
+                    ->placeholder('e.g., 450px, 100%, or auto')
+                    ->toArray()
+            )
+            ->add(
+                'fob_trustpilot_widget_max_width',
+                TextField::class,
+                TextFieldOption::make()
+                    ->label(trans('plugins/fob-trustpilot::trustpilot.settings.widget_max_width'))
+                    ->helperText(trans('plugins/fob-trustpilot::trustpilot.settings.widget_max_width_helper'))
+                    ->value(old('fob_trustpilot_widget_max_width', setting('fob_trustpilot_widget_max_width')))
+                    ->placeholder('e.g., 1200px, 90%, or none')
+                    ->toArray()
+            )
+            ->add(
+                'fob_trustpilot_widget_alignment',
+                SelectField::class,
+                SelectFieldOption::make()
+                    ->label(trans('plugins/fob-trustpilot::trustpilot.settings.widget_alignment'))
+                    ->helperText(trans('plugins/fob-trustpilot::trustpilot.settings.widget_alignment_helper'))
+                    ->choices([
+                        'start' => trans('plugins/fob-trustpilot::trustpilot.alignments.start'),
+                        'center' => trans('plugins/fob-trustpilot::trustpilot.alignments.center'),
+                        'end' => trans('plugins/fob-trustpilot::trustpilot.alignments.end'),
+                    ])
+                    ->selected(old('fob_trustpilot_widget_alignment', setting('fob_trustpilot_widget_alignment', 'center')))
+                    ->toArray()
+            )
+            ->add(
+                'fob_trustpilot_widget_margin_x',
+                TextField::class,
+                TextFieldOption::make()
+                    ->label(trans('plugins/fob-trustpilot::trustpilot.settings.widget_margin_x'))
+                    ->helperText(trans('plugins/fob-trustpilot::trustpilot.settings.widget_margin_x_helper'))
+                    ->value(old('fob_trustpilot_widget_margin_x', setting('fob_trustpilot_widget_margin_x')))
+                    ->placeholder('e.g., 20px, 5%, auto, or 0')
+                    ->toArray()
+            )
+            ->add(
+                'fob_trustpilot_widget_margin_y',
+                TextField::class,
+                TextFieldOption::make()
+                    ->label(trans('plugins/fob-trustpilot::trustpilot.settings.widget_margin_y'))
+                    ->helperText(trans('plugins/fob-trustpilot::trustpilot.settings.widget_margin_y_helper'))
+                    ->value(old('fob_trustpilot_widget_margin_y', setting('fob_trustpilot_widget_margin_y')))
+                    ->placeholder('e.g., 30px, 2rem, or 0')
+                    ->toArray()
+            )
+            ->add(
+                'fob_trustpilot_widget_padding_x',
+                TextField::class,
+                TextFieldOption::make()
+                    ->label(trans('plugins/fob-trustpilot::trustpilot.settings.widget_padding_x'))
+                    ->helperText(trans('plugins/fob-trustpilot::trustpilot.settings.widget_padding_x_helper'))
+                    ->value(old('fob_trustpilot_widget_padding_x', setting('fob_trustpilot_widget_padding_x')))
+                    ->placeholder('e.g., 15px, 1rem, or 0')
+                    ->toArray()
+            )
+            ->add(
+                'fob_trustpilot_widget_padding_y',
+                TextField::class,
+                TextFieldOption::make()
+                    ->label(trans('plugins/fob-trustpilot::trustpilot.settings.widget_padding_y'))
+                    ->helperText(trans('plugins/fob-trustpilot::trustpilot.settings.widget_padding_y_helper'))
+                    ->value(old('fob_trustpilot_widget_padding_y', setting('fob_trustpilot_widget_padding_y')))
+                    ->placeholder('e.g., 10px, 1rem, or 0')
+                    ->toArray()
+            )
+            ->add(
                 'fob_trustpilot_stars_color',
                 ColorField::class,
                 ColorFieldOption::make()

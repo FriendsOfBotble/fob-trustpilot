@@ -13,7 +13,6 @@ class HookServiceProvider extends ServiceProvider
             add_filter(BASE_FILTER_AFTER_SETTING_CONTENT, [$this, 'addSettings'], 59);
             add_filter(THEME_FRONT_HEADER, [$this, 'addTrustpilotMeta'], 100);
             add_filter(THEME_FRONT_FOOTER, [$this, 'renderTrustpilotWidget'], 100);
-            add_filter(THEME_FRONT_FOOTER, [$this, 'addTrustpilotScript'], 999);
         });
     }
 
@@ -49,22 +48,15 @@ class HookServiceProvider extends ServiceProvider
 
         $businessUnitId = setting('fob_trustpilot_business_unit_id');
 
-        return $html . view('plugins/fob-trustpilot::meta', compact('businessUnitId'))->render();
-    }
-
-    public function addTrustpilotScript(?string $html = null): string
-    {
-        if (! $this->isEnabledTrustpilot()) {
+        if (! $businessUnitId) {
             return $html;
         }
 
-        if (setting('fob_trustpilot_business_unit_id')) {
-            $script = '<script type="text/javascript" src="https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>';
+        $script = '<!-- TrustBox script -->' . PHP_EOL;
+        $script .= '<script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>' . PHP_EOL;
+        $script .= '<!-- End TrustBox script -->' . PHP_EOL;
 
-            return $html . $script;
-        }
-
-        return $html ?: '';
+        return $html . $script . view('plugins/fob-trustpilot::meta', compact('businessUnitId'))->render();
     }
 
     protected function isEnabledTrustpilot(): bool
